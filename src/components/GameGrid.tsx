@@ -5,6 +5,7 @@ import GameCardContainer from "./GameCardContainer";
 import React from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { SimpleGrid, Spinner, Text } from "@chakra-ui/react";
+import { Link } from "react-router-dom";
 
 const GameGrid = () => {
   const { data, error, isLoading, fetchNextPage, hasNextPage } = useGames();
@@ -37,7 +38,10 @@ const GameGrid = () => {
           <React.Fragment key={index}>
             {page.results.map((game) => (
               <GameCardContainer key={game.id}>
-                <GameCard game={game} />
+                <Link to={"/games/" + game.slug}>
+                  {game.name}
+                  <GameCard game={game} />
+                </Link>
               </GameCardContainer>
             ))}
           </React.Fragment>
